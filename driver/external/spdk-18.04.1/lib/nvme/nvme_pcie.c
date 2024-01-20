@@ -49,7 +49,7 @@
 #define NVME_MIN_COMPLETIONS	(1)
 #define NVME_MAX_COMPLETIONS	(128)
 
-#define NVME_ADMIN_ENTRIES	(128)
+#define NVME_ADMIN_ENTRIES	(64)
 
 /*
  * NVME_MAX_SGL_DESCRIPTORS defines the maximum number of descriptors in one SGL
