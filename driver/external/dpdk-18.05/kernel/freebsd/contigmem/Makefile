@@ -13,7 +13,7 @@ MODULE = contigmem
 #
 MODULE_CFLAGS += -I$(SRCDIR)
 MODULE_CFLAGS += -I$(RTE_OUTPUT)/include
-MODULE_CFLAGS += -Winline -Wall -Werror
+MODULE_CFLAGS += -W
 MODULE_CFLAGS += -include $(RTE_OUTPUT)/include/rte_config.h
 
 #

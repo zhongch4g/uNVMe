@@ -26,7 +26,7 @@ if "CCFLAGS" not in os.environ:
 #if "LDFLAGS" not in os.environ:
 if "SHLINKFLAGS" not in os.environ:
 	env_with_err['SHLINKFLAGS'] = '-shared'
-print "CCCOM is:", env_with_err.subst('$CCCOM')
+print ("CCCOM is:", env_with_err.subst('$CCCOM'))
 
 
 static_object = env_with_err.StaticLibrary(kv_io, ['src/kvradix.c', 'src/kvsdk.c', 'src/kvinit.c', 'src/kvio.c', 'src/kvcache.c', 'src/kvslab.c', 'src/kvlog.c', 'src/slab/kvslab_core.c', 'src/common/kvutil.c', 'src/common/EagleHashIP.c', 'src/common/latency_stat.c', 'src/kvconfig_nxx.c'],

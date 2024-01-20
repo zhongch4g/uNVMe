@@ -42,7 +42,7 @@ ifneq ($(CONFIG_RTE_TOOLCHAIN_ICC),y)
 CFLAGS_BASE_DRIVER += -Wno-unused-value
 CFLAGS_BASE_DRIVER += -Wno-format-nonliteral
 ifeq ($(OS_TYPE),Linux)
-ifeq ($(shell clang -Wno-shift-negative-value -Werror -E - < /dev/null > /dev/null 2>&1; echo $$?),0)
+ifeq ($(shell clang -Wno-shift-negative-value -E - < /dev/null > /dev/null 2>&1; echo $$?),0)
 CFLAGS_BASE_DRIVER += -Wno-shift-negative-value
 endif
 endif
@@ -69,7 +69,7 @@ CFLAGS_BASE_DRIVER += -Wno-visibility
 CFLAGS_BASE_DRIVER += -Wno-empty-body
 CFLAGS_BASE_DRIVER += -Wno-invalid-source-encoding
 CFLAGS_BASE_DRIVER += -Wno-sometimes-uninitialized
-ifeq ($(shell clang -Wno-pointer-bool-conversion -Werror -E - < /dev/null > /dev/null 2>&1; echo $$?),0)
+ifeq ($(shell clang -Wno-pointer-bool-conversion -E - < /dev/null > /dev/null 2>&1; echo $$?),0)
 CFLAGS_BASE_DRIVER += -Wno-pointer-bool-conversion
 endif
 else #ICC

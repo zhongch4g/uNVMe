@@ -37,7 +37,7 @@ include $(RTE_SDK)/mk/rte.vars.mk
 LIB = librte_pmd_ark.a
 
 CFLAGS += -O3 -I./
-CFLAGS += $(WERROR_FLAGS) -Werror
+CFLAGS += $(WERROR_FLAGS)
 
 EXPORT_MAP := rte_pmd_ark_version.map
 

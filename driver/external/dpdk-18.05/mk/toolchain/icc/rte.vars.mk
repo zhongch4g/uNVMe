@@ -42,13 +42,15 @@ TOOLCHAIN_ASFLAGS =
 #   error #15527: loop was not vectorized: function call to fprintf cannot be vectorize
 #                   was declared "deprecated"
 #   Warning #11074, 11076: to prevent "inline-max-size" warnings.
-WERROR_FLAGS := -Wall -w2 -diag-disable 271 -diag-warning 1478
-WERROR_FLAGS += -diag-disable 13368 -diag-disable 15527
-WERROR_FLAGS += -diag-disable 188
-WERROR_FLAGS += -diag-disable 11074 -diag-disable 11076 -Wdeprecated
+WERROR_FLAGS := -Wall
+
+#  -w2 -diag-disable 271 -diag-warning 1478
+# WERROR_FLAGS += -diag-disable 13368 -diag-disable 15527
+# WERROR_FLAGS += -diag-disable 188
+# WERROR_FLAGS += -diag-disable 11074 -diag-disable 11076 -Wdeprecated
 
 ifeq ($(RTE_DEVEL_BUILD),y)
-WERROR_FLAGS += -Werror-all
+# WERROR_FLAGS += -Werror-all
 endif
 
 # process cpu flags

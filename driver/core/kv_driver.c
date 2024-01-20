@@ -235,6 +235,12 @@ int _kv_env_init(uint32_t process_mem_size_mb, struct spdk_env_opts* opts){
                 return ret;
         }
 */
+        /**
+         * The PCI Express AER driver provides the infrastructure to support 
+         * PCI Express Advanced Error Reporting capability. 
+         * The PCI Express AER driver provides three basic functions: 
+         * - Gathers the comprehensive error information if errors occurred.
+         */
         ret = pthread_create(&g_aer_thread, NULL, (void *)&process_all_nvme_aers_thread, NULL);
 
         if(ret) {
@@ -406,7 +412,7 @@ int kv_nvme_init(const char *bdf, kv_nvme_io_options *options, unsigned int ssd_
 
 	nvme->options->queue_depth++;
         ret = spdk_nvme_probe(&nvme->trid, nvme, probe_cb, attach_cb, NULL);
-
+        // Get the controller and namespace (Ready to send the request)
         if(ret) {
                 KVNVME_ERR("SPDK NVMe Probe failed, ret = %d", ret);
                 free(nvme);
@@ -428,6 +434,8 @@ int kv_nvme_init(const char *bdf, kv_nvme_io_options *options, unsigned int ssd_
         KVNVME_DEBUG("Total number of Namespaces in the controller: %d", num_ns);
 
         nvme->ns = spdk_nvme_ctrlr_get_ns(nvme->ctrlr, 1);
+
+        KVNVME_DEBUG("namepace id: 1, size: %ju GB", spdk_nvme_ns_get_size(nvme->ns)/1024/1024/1024);
 
         if(!nvme->ns) {
                 KVNVME_ERR("Could not get the Namespace for the KV NVMe Device");
